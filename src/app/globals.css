@@ -3,25 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #fdf2f8;
+  --foreground: #1a1a2e;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #ede9fe 100%);
+  min-height: 100vh;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fdf2f8; }
+::-webkit-scrollbar-thumb { background: #f9a8d4; border-radius: 3px; }
+
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .delay-0   { animation-delay: 0ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-800 { animation-delay: 800ms; }
+  .delay-1000{ animation-delay: 1000ms; }
+
+  .font-serif { font-family: var(--font-serif), Georgia, serif; }
+  .font-sans  { font-family: var(--font-sans), system-ui, sans-serif; }
 }
