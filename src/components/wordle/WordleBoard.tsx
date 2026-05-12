@@ -50,7 +50,7 @@ export default function WordleBoard({
     return (
       <div
         key={rowIdx}
-        className={`flex gap-1.5 ${shakeRow === rowIdx ? 'animate-shake' : ''}`}
+        className={`flex gap-1 sm:gap-1.5 ${shakeRow === rowIdx ? 'animate-shake' : ''}`}
       >
         {tiles}
       </div>
@@ -58,7 +58,7 @@ export default function WordleBoard({
   });
 
   return (
-    <div className="flex flex-col gap-1.5 p-4">
+    <div className="flex flex-col gap-1 sm:gap-1.5 p-2 sm:p-4">
       {rows}
     </div>
   );

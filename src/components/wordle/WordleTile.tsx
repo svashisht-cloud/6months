@@ -34,10 +34,10 @@ export default function WordleTile({ letter, state, colIndex, isRevealing }: Pro
   return (
     <div
       className={`
-        w-12 h-12 md:w-14 md:h-14
+        w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14
         flex items-center justify-center
-        text-xl font-bold uppercase
-        border rounded
+        text-lg sm:text-xl font-bold uppercase
+        border rounded-md
         select-none
         transition-colors duration-100
         ${colorClass}

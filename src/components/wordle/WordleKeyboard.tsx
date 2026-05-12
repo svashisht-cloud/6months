@@ -21,43 +21,48 @@ function keyColor(state: TileState | undefined): string {
   if (state === 'correct') return 'bg-green-500 text-white';
   if (state === 'present') return 'bg-yellow-400 text-white';
   if (state === 'absent')  return 'bg-gray-400  text-white';
-  return 'bg-rose-100 text-gray-800 hover:bg-petal';
+  return 'bg-rose-100 text-gray-800 active:bg-petal';
 }
 
 export default function WordleKeyboard({ keyboardState, onKey, onEnter, onDelete, disabled }: Props) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
-      if (e.key === 'Enter') { onEnter(); return; }
+      if (e.key === 'Enter')     { onEnter(); return; }
       if (e.key === 'Backspace') { onDelete(); return; }
-      if (/^[a-zA-Z]$/.test(e.key)) { onKey(e.key.toUpperCase()); }
+      if (/^[a-zA-Z]$/.test(e.key)) onKey(e.key.toUpperCase());
     }
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onKey, onEnter, onDelete]);
 
   return (
-    <div className="flex flex-col items-center gap-1.5 select-none">
+    <div className="flex flex-col items-center gap-1.5 select-none w-full px-1">
       {ROWS.map((row, ri) => (
-        <div key={ri} className="flex gap-1">
+        <div key={ri} className="flex gap-1 w-full justify-center">
           {row.map((key) => {
             const isSpecial = key === 'ENTER' || key === '⌫';
-            const color = isSpecial ? 'bg-velvet text-white hover:bg-velvet-dark' : keyColor(keyboardState[key]);
+            const color = isSpecial
+              ? 'bg-gradient-to-b from-velvet to-velvet-dark text-white active:opacity-80'
+              : keyColor(keyboardState[key]);
 
             return (
               <button
                 key={key}
                 disabled={disabled}
-                onClick={() => {
+                onPointerDown={e => {
+                  e.preventDefault(); // prevents double-fire on touch
                   if (key === 'ENTER') onEnter();
                   else if (key === '⌫') onDelete();
                   else onKey(key);
                 }}
                 className={`
-                  ${isSpecial ? 'px-3 text-xs font-bold' : 'w-9 md:w-10'}
-                  h-14 rounded font-bold text-sm
-                  transition-colors duration-100
-                  disabled:opacity-50 disabled:cursor-not-allowed
+                  ${isSpecial ? 'px-2 sm:px-3 text-[10px] sm:text-xs font-bold flex-shrink-0' : 'flex-1 max-w-[38px] text-sm font-bold'}
+                  h-14 sm:h-14 rounded-lg
+                  flex items-center justify-center
+                  transition-opacity duration-75
+                  disabled:opacity-40 disabled:pointer-events-none
+                  touch-manipulation
                   ${color}
                 `}
               >

@@ -90,10 +90,10 @@ export default function WordleGame() {
   const currentRow = state.guesses.length;
 
   return (
-    <section className="flex flex-col items-center gap-6">
+    <section className="flex flex-col items-center gap-4 sm:gap-6 w-full">
       <div className="text-center">
-        <h2 className="font-serif text-3xl text-rose-deep font-bold">Can You Guess How I Feel?</h2>
-        <p className="text-velvet mt-1 italic font-serif">6 letters. 6 chances. The word says it all.</p>
+        <h2 className="font-serif text-2xl sm:text-3xl text-rose-deep font-bold">Can You Guess How I Feel?</h2>
+        <p className="text-velvet mt-1 italic font-serif text-sm sm:text-base">6 letters. 6 chances. The word says it all.</p>
       </div>
 
       {/* Toast message */}
