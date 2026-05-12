@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 
 // ============================================================
 //  MUSIC — drop your .mp3 into public/music/song.mp3
-//  (any romantic song you both love)
 // ============================================================
 const SONG_SRC = '/music/song.mp3';
 const HER_NAME = 'Riya';
@@ -17,7 +16,6 @@ export default function WelcomeOverlay() {
   const [hasSong, setHasSong]     = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Check if song file exists on mount
   useEffect(() => {
     fetch(SONG_SRC, { method: 'HEAD' })
       .then(r => setHasSong(r.ok))
@@ -46,12 +44,11 @@ export default function WelcomeOverlay() {
 
   return (
     <>
-      {/* Hidden audio element — persists after overlay is gone */}
       {hasSong && (
         <audio ref={audioRef} src={SONG_SRC} loop preload="auto" />
       )}
 
-      {/* Floating music toggle — visible after overlay is dismissed */}
+      {/* Floating music toggle */}
       {dismissed && hasSong && (
         <button
           onClick={toggleMusic}
@@ -72,14 +69,14 @@ export default function WelcomeOverlay() {
             ${fading ? 'opacity-0' : 'opacity-100'}
           `}
         >
-          {/* Floating hearts background */}
+          {/* Floating hearts */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
             {['top-[10%] left-[8%]','top-[20%] right-[12%]','top-[55%] left-[5%]',
               'top-[70%] right-[8%]','bottom-[10%] left-[20%]','bottom-[15%] right-[20%]',
               'top-[35%] left-[50%]'].map((pos, i) => (
               <span
                 key={i}
-                className={`absolute text-white/20 text-5xl animate-heartbeat ${pos}`}
+                className={`absolute text-white/15 text-5xl animate-heartbeat ${pos}`}
                 style={{ animationDelay: `${i * 0.3}s` }}
               >
                 ♥
@@ -88,14 +85,17 @@ export default function WelcomeOverlay() {
           </div>
 
           <div className="text-center px-8 z-10">
-            <div className="text-7xl mb-6 animate-heartbeat">♥</div>
-            <p className="font-sans text-white/70 text-sm uppercase tracking-widest mb-3">
+            <div className="text-6xl mb-5 animate-heartbeat">♥</div>
+
+            <p className="font-sans text-white/60 text-xs uppercase tracking-[0.3em] mb-4">
               a little something for
             </p>
-            <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white drop-shadow-lg mb-2">
+
+            <h1 className="font-script text-6xl sm:text-7xl text-white drop-shadow-lg mb-1">
               {HER_NAME}
             </h1>
-            <p className="font-serif italic text-white/80 text-xl mt-2 mb-10">
+
+            <p className="font-serif italic text-white/75 text-xl sm:text-2xl mt-2 mb-10 font-light">
               six months of us
             </p>
 
@@ -103,19 +103,19 @@ export default function WelcomeOverlay() {
               onClick={handleOpen}
               className="
                 px-10 py-4 rounded-full
-                bg-white text-rose-deep font-bold text-lg
-                shadow-2xl hover:shadow-white/30
+                bg-white text-rose-deep font-sans font-semibold text-base
+                shadow-2xl hover:shadow-white/20
                 hover:scale-105 active:scale-95
                 transition-all duration-200
-                touch-manipulation
+                touch-manipulation tracking-wide
               "
             >
               {hasSong ? 'Open with music ♪' : 'Open ♥'}
             </button>
 
             {!hasSong && (
-              <p className="text-white/40 text-xs mt-4">
-                Drop a song.mp3 into public/music/ to add music
+              <p className="font-sans text-white/35 text-xs mt-4">
+                Drop song.mp3 into public/music/ to add music
               </p>
             )}
           </div>

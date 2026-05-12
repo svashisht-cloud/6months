@@ -27,13 +27,13 @@ export default function Home() {
       <main className="min-h-screen">
         {/* Header */}
         <header className="w-full bg-gradient-to-r from-rose-deep via-velvet to-petal-dark text-white py-8 sm:py-12 px-4 text-center shadow-lg">
-          <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.2em] opacity-75 mb-2">
-            Six months and counting
+          <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.25em] opacity-70 mb-3">
+            six months and counting
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold drop-shadow-md leading-tight">
+          <h1 className="font-script text-5xl sm:text-6xl md:text-7xl drop-shadow-md leading-tight">
             Six Months of Us
           </h1>
-          <div className="mt-3 text-3xl sm:text-4xl animate-heartbeat inline-block select-none">♥</div>
+          <div className="mt-4 text-3xl sm:text-4xl animate-heartbeat inline-block select-none">♥</div>
         </header>
 
         {/* Page content */}
@@ -47,11 +47,11 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="text-center py-10 px-4">
-          <p className="font-serif italic text-gold text-lg sm:text-xl">
+          <p className="font-script text-2xl sm:text-3xl text-gold">
             Happy 6 months, {HER_NAME} ♥
           </p>
-          <p className="text-gray-400 text-xs mt-2">
-            Made with love, just for you.
+          <p className="font-sans text-gray-400 text-xs mt-2 tracking-wide">
+            made with love, just for you
           </p>
         </footer>
       </main>

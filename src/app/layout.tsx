@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
+import { Dancing_Script, Cormorant_Garamond, Nunito } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const dancing = Dancing_Script({
   subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-script",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
 });
 
-const lato = Lato({
-  weight: ["400", "700"],
+const nunito = Nunito({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -27,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${lato.variable} antialiased`}>
+      <body className={`${dancing.variable} ${cormorant.variable} ${nunito.variable} antialiased`}>
         {children}
       </body>
     </html>

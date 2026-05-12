@@ -16,8 +16,9 @@ const config: Config = {
         gold:   { DEFAULT: '#c9a96e' },
       },
       fontFamily: {
-        serif: ['var(--font-serif)', 'Georgia', 'serif'],
-        sans:  ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        script: ['var(--font-script)', 'cursive'],
+        serif:  ['var(--font-serif)', 'Georgia', 'serif'],
+        sans:   ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         flip: {

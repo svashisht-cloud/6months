@@ -92,14 +92,14 @@ export default function WordleGame() {
   return (
     <section className="flex flex-col items-center gap-4 sm:gap-6 w-full">
       <div className="text-center">
-        <h2 className="font-serif text-2xl sm:text-3xl text-rose-deep font-bold">Can You Guess How I Feel?</h2>
-        <p className="text-velvet mt-1 italic font-serif text-sm sm:text-base">6 letters. 6 chances. The word says it all.</p>
+        <h2 className="font-serif font-light italic text-3xl sm:text-4xl text-rose-deep tracking-wide">Guess How I Feel?</h2>
+        <p className="text-velvet/80 mt-1 font-sans text-sm sm:text-base">Because you like Wordle, please do this one for me!</p>
       </div>
 
       {/* Toast message */}
       <div className={`
-        transition-opacity duration-300 text-sm font-bold text-white
-        bg-gray-800 rounded-full px-4 py-1
+        transition-opacity duration-300 text-sm font-sans font-semibold text-white
+        bg-gray-800/90 rounded-full px-4 py-1.5
         ${state.message ? 'opacity-100' : 'opacity-0 pointer-events-none'}
       `}>
         {state.message || ' '}

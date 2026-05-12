@@ -26,6 +26,7 @@ body {
   .delay-800 { animation-delay: 800ms; }
   .delay-1000{ animation-delay: 1000ms; }
 
-  .font-serif { font-family: var(--font-serif), Georgia, serif; }
-  .font-sans  { font-family: var(--font-sans), system-ui, sans-serif; }
+  .font-script { font-family: var(--font-script), cursive; }
+  .font-serif  { font-family: var(--font-serif), Georgia, serif; }
+  .font-sans   { font-family: var(--font-sans), system-ui, sans-serif; }
 }

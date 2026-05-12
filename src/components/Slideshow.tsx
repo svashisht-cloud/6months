@@ -49,7 +49,7 @@ export default function Slideshow() {
         <SectionHeading />
         <div className="h-64 flex flex-col items-center justify-center bg-rose-50/60 rounded-2xl border-2 border-dashed border-petal gap-4">
           <span className="text-6xl animate-heartbeat select-none">♥</span>
-          <p className="font-serif italic text-rose-deep text-lg">Your photos go here</p>
+          <p className="font-serif italic font-light text-rose-deep text-xl">Your photos go here</p>
         </div>
       </section>
     );
@@ -78,7 +78,7 @@ export default function Slideshow() {
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
 
           {/* Caption on top of image */}
-          <p className="absolute bottom-3 inset-x-0 text-center font-serif italic text-white/90 text-sm px-4 drop-shadow">
+          <p className="absolute bottom-3 inset-x-0 text-center font-script text-white/90 text-lg px-4 drop-shadow-md">
             {img.caption}
           </p>
 
@@ -134,7 +134,7 @@ export default function Slideshow() {
 
 function SectionHeading() {
   return (
-    <h2 className="font-serif text-2xl sm:text-3xl text-rose-deep font-bold text-center mb-5">
+    <h2 className="font-serif font-light italic text-3xl sm:text-4xl text-rose-deep text-center mb-5 tracking-wide">
       Our Moments Together
     </h2>
   );
