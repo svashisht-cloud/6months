@@ -118,11 +118,11 @@ export default function WordleGame() {
       {state.gameStatus === 'won' && (
         <div className="animate-fadeIn text-center bg-gradient-to-r from-rose-deep via-velvet to-petal-dark text-white rounded-2xl p-6 w-full max-w-sm shadow-lg">
           <div className="text-5xl animate-heartbeat mb-3">♥</div>
-          <p className="font-serif text-2xl font-bold">You figured it out!</p>
-          <p className="mt-1 italic opacity-90">Just like you figured out my heart.</p>
+          <p className="font-script text-3xl">You figured it out!</p>
+          <p className="mt-1 font-serif italic font-light opacity-90 text-lg">Just like you figured out my heart.</p>
           <button
             onClick={reset}
-            className="mt-4 px-5 py-2 rounded-full bg-white text-rose-deep font-bold text-sm hover:bg-rose-50 transition-colors"
+            className="mt-4 px-5 py-2 rounded-full bg-white text-rose-deep font-sans font-semibold text-sm hover:bg-rose-50 transition-colors"
           >
             Play again
           </button>
@@ -131,12 +131,12 @@ export default function WordleGame() {
 
       {state.gameStatus === 'lost' && (
         <div className="animate-fadeIn text-center bg-white/80 border border-petal rounded-2xl p-6 w-full max-w-sm shadow">
-          <p className="font-serif text-xl text-rose-deep font-bold">The word was</p>
-          <p className="font-serif text-4xl font-bold text-velvet tracking-widest mt-1">ILOVEU</p>
-          <p className="text-gray-500 italic mt-2 text-sm">It&apos;s okay — now you know for certain.</p>
+          <p className="font-serif italic font-light text-xl text-rose-deep">The word was</p>
+          <p className="font-script text-5xl text-velvet mt-1">ILOVEU</p>
+          <p className="font-serif italic font-light text-gray-500 mt-2 text-base">It&apos;s okay — now you know for certain.</p>
           <button
             onClick={reset}
-            className="mt-4 px-5 py-2 rounded-full bg-gradient-to-r from-rose-deep to-velvet text-white font-bold text-sm hover:opacity-90 transition-opacity"
+            className="mt-4 px-5 py-2 rounded-full bg-gradient-to-r from-rose-deep to-velvet text-white font-sans font-semibold text-sm hover:opacity-90 transition-opacity"
           >
             Try again
           </button>
