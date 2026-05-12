@@ -2,10 +2,10 @@
 
 import { useState, useCallback } from 'react';
 import {
-  TARGET_WORD,
   MAX_ATTEMPTS,
   WORD_LENGTH,
   TileResult,
+  getRandomWord,
   evaluateGuess,
   getKeyboardState,
   checkWin,
@@ -16,13 +16,14 @@ import WordleKeyboard from './WordleKeyboard';
 const REVEAL_DURATION = WORD_LENGTH * 200 + 300;
 
 const initialState = () => ({
-  guesses: [] as string[],
-  results: [] as TileResult[][],
+  targetWord:   getRandomWord(),
+  guesses:      [] as string[],
+  results:      [] as TileResult[][],
   currentGuess: '',
-  gameStatus: 'playing' as 'playing' | 'won' | 'lost',
-  isRevealing: false,
-  shakeRow: null as number | null,
-  message: '',
+  gameStatus:   'playing' as 'playing' | 'won' | 'lost',
+  isRevealing:  false,
+  shakeRow:     null as number | null,
+  message:      '',
 });
 
 export default function WordleGame() {
@@ -59,10 +60,10 @@ export default function WordleGame() {
         return { ...s, shakeRow: row };
       }
 
-      const result  = evaluateGuess(s.currentGuess, TARGET_WORD);
+      const result     = evaluateGuess(s.currentGuess, s.targetWord);
       const newGuesses = [...s.guesses, s.currentGuess];
       const newResults = [...s.results, result];
-      const won = checkWin(result);
+      const won  = checkWin(result);
       const lost = !won && newGuesses.length >= MAX_ATTEMPTS;
 
       setTimeout(() => {
@@ -75,18 +76,18 @@ export default function WordleGame() {
 
       return {
         ...s,
-        guesses: newGuesses,
-        results: newResults,
+        guesses:     newGuesses,
+        results:     newResults,
         currentGuess: '',
         isRevealing: true,
-        shakeRow: null,
+        shakeRow:    null,
       };
     });
   }, [showMessage]);
 
   const reset = () => setState(initialState());
 
-  const kbState = getKeyboardState(state.results);
+  const kbState    = getKeyboardState(state.results);
   const currentRow = state.guesses.length;
 
   return (
@@ -102,7 +103,7 @@ export default function WordleGame() {
         bg-gray-800/90 rounded-full px-4 py-1.5
         ${state.message ? 'opacity-100' : 'opacity-0 pointer-events-none'}
       `}>
-        {state.message || ' '}
+        {state.message || ' '}
       </div>
 
       <WordleBoard
@@ -114,7 +115,7 @@ export default function WordleGame() {
         shakeRow={state.shakeRow}
       />
 
-      {/* Win / Loss result */}
+      {/* Win result */}
       {state.gameStatus === 'won' && (
         <div className="animate-fadeIn text-center bg-gradient-to-r from-rose-deep via-velvet to-petal-dark text-white rounded-2xl p-6 w-full max-w-sm shadow-lg">
           <div className="text-5xl animate-heartbeat mb-3">♥</div>
@@ -122,21 +123,22 @@ export default function WordleGame() {
           <p className="mt-1 font-serif italic font-light opacity-90 text-lg">Just like you figured out my heart.</p>
           <button
             onClick={reset}
-            className="mt-4 px-5 py-2 rounded-full bg-white text-rose-deep font-sans font-semibold text-sm hover:bg-rose-50 transition-colors"
+            className="mt-4 px-5 py-2 rounded-full bg-white text-rose-deep font-sans font-semibold text-sm hover:bg-rose-50 transition-colors touch-manipulation"
           >
             Play again
           </button>
         </div>
       )}
 
+      {/* Loss result */}
       {state.gameStatus === 'lost' && (
         <div className="animate-fadeIn text-center bg-white/80 border border-petal rounded-2xl p-6 w-full max-w-sm shadow">
           <p className="font-serif italic font-light text-xl text-rose-deep">The word was</p>
-          <p className="font-script text-5xl text-velvet mt-1">ILOVEU</p>
-          <p className="font-serif italic font-light text-gray-500 mt-2 text-base">It&apos;s okay — now you know for certain.</p>
+          <p className="font-script text-5xl text-velvet mt-1">{state.targetWord.toLowerCase()}</p>
+          <p className="font-serif italic font-light text-gray-500 mt-2 text-base">It&apos;s okay — try the next one!</p>
           <button
             onClick={reset}
-            className="mt-4 px-5 py-2 rounded-full bg-gradient-to-r from-rose-deep to-velvet text-white font-sans font-semibold text-sm hover:opacity-90 transition-opacity"
+            className="mt-4 px-5 py-2 rounded-full bg-gradient-to-r from-rose-deep to-velvet text-white font-sans font-semibold text-sm hover:opacity-90 transition-opacity touch-manipulation"
           >
             Try again
           </button>
